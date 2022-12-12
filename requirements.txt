@@ -3,5 +3,7 @@ from-root
 scikit-learn
 pandas
 PyYAML
+scipy
+dill
 -e .
 
