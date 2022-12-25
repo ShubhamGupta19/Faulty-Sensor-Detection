@@ -1,3 +1,4 @@
+import logging
 import sys
 from typing import Optional
 
@@ -46,17 +47,19 @@ class SensorData:
             export entire collectin as dataframe:
             return pd.DataFrame of collection
             """
-            if database_name is None:
-                collection = self.mongo_client.database[collection_name]
-            else:
-                collection = self.mongo_client[database_name][collection_name]
+            # if database_name is None:
+            #      collection = self.mongo_client.client.database[collection_name]
+            # else:
+            #      collection = self.mongo_client.client[database_name][collection_name]
+            collection=self.mongo_client.client["sensordata"]["fromkafkatopic"]
+            logging.info(collection.find())
             df = pd.DataFrame(list(collection.find()))
-
+            logging.info(df.columns)
             if "_id" in df.columns.to_list():
                 df = df.drop(columns=["_id"], axis=1)
 
             df.replace({"na": np.nan}, inplace=True)
-
+            
             return df
 
         except Exception as e:

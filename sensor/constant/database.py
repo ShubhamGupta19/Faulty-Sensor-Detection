@@ -1,2 +1,2 @@
 DATABASE_NAME="sensordata"
-COLLECTION_NAME=""
+COLLECTION_NAME="fromkafkatopic"
