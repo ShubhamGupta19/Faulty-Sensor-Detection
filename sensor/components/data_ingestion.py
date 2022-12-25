@@ -24,7 +24,7 @@ class DataIngestion:
         try:
             logging.info("Exporting data from mongodb to feature store")
             sensor_data = SensorData()
-            dataframe = sensor_data.export_collection_as_dataframe(collection_name=self.data_ingestion_config.collection_name,database_name="sensordata")
+            dataframe = sensor_data.export_collection_as_dataframe(collection_name=self.data_ingestion_config.collection_name,database_name="sensordata ")
             feature_store_file_path = self.data_ingestion_config.feature_store_file_path            
             logging.info(feature_store_file_path)
             logging.info(dataframe)
