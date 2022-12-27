@@ -58,7 +58,7 @@ async def train_route():
         return Response(f"Error Occurred! {e}")
 
 @app.get("/predict")
-async def predict_route(request:Request,file: UploadFile = File(...)):
+async def predict_route(file: UploadFile = File(...)):
     try:
         #get data from user csv file
         #conver csv file to dataframe
@@ -73,6 +73,7 @@ async def predict_route(request:Request,file: UploadFile = File(...)):
         y_pred = model.predict(df)
         df['predicted_column'] = y_pred
         df['predicted_column'].replace(TargetValueMapping().reverse_mapping(),inplace=True)
+        print(df)
         return df.to_html()
         #decide how to return file to user.
         
